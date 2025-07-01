@@ -8,7 +8,9 @@ import { ApplicationsModule } from './applications/applications.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/visa'),
+    MongooseModule.forRoot(
+      'mongodb+srv://0xelliot:<db_password>@cluster0.tyxaihb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+    ),
     UsersModule,
     AuthModule,
     ApplicationsModule,
