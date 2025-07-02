@@ -1,98 +1,238 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Visa Application Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A NestJS-based REST API for managing visa applications with user authentication and role-based access control.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- 🔐 JWT-based authentication
+- 👥 Role-based authorization (User/Admin)
+- 📝 Visa application management
+- 🗄️ MongoDB database integration
+- ✅ Input validation and sanitization
+- 🔒 Password encryption with bcrypt
+- 🌐 CORS enabled
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Prerequisites
 
-## Project setup
+Before running this application, make sure you have the following installed:
 
-```bash
-$ pnpm install
-```
+- **Node.js** (v18 or higher)
+- **pnpm** (recommended) or npm
+- **MongoDB** (local installation or MongoDB Atlas)
 
-## Compile and run the project
+## Environment Setup
 
-```bash
-# development
-$ pnpm run start
+1. **Clone the repository**
 
-# watch mode
-$ pnpm run start:dev
+   ```bash
+   git clone <your-repository-url>
+   cd backend
+   ```
 
-# production mode
-$ pnpm run start:prod
-```
+2. **Install dependencies**
 
-## Run tests
+   ```bash
+   pnpm install
+   # or
+   npm install
+   ```
 
-```bash
-# unit tests
-$ pnpm run test
+3. **Environment Variables**
 
-# e2e tests
-$ pnpm run test:e2e
+   Create a `.env` file in the root directory:
 
-# test coverage
-$ pnpm run test:cov
-```
+   ```bash
+   # Database
+   MONGODB_URI=mongodb://localhost:27017/visa-applications
+   # or for MongoDB Atlas:
+   # MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/visa-applications
 
-## Deployment
+   # JWT Secret (generate a strong secret)
+   JWT_SECRET=your-super-secret-jwt-key-here
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+   # Server Port (optional, defaults to 3001)
+   PORT=3001
+   ```
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## Running the Application
+
+### Development Mode
 
 ```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
+# Start in development mode with hot reload
+pnpm run start:dev
+# or
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Production Mode
 
-## Resources
+```bash
+# Build the application
+pnpm run build
 
-Check out a few resources that may come in handy when working with NestJS:
+# Start in production mode
+pnpm run start:prod
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+### Debug Mode
 
-## Support
+```bash
+# Start with debugging enabled
+pnpm run start:debug
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## API Documentation
 
-## Stay in touch
+The API runs on `http://localhost:3001` (or the port specified in your `.env` file).
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Base URL
+
+```
+http://localhost:3001
+```
+
+### Authentication
+
+All protected endpoints require a JWT token in the Authorization header:
+
+```
+Authorization: Bearer <jwt_token>
+```
+
+### Available Endpoints
+
+#### Authentication
+
+- `POST /auth/register` - User registration
+- `POST /auth/login` - User login
+
+#### Users (Admin Only)
+
+- `POST /users/admin` - Create admin user
+
+#### Applications
+
+- `GET /applications` - Get user's applications
+- `POST /applications` - Submit new application
+
+#### Admin Endpoints
+
+- `GET /admin/applications` - Get all applications (Admin only)
+
+For detailed API documentation, see [API_SCHEMA.md](./API_SCHEMA.md).
+
+## Testing
+
+```bash
+# Run unit tests
+pnpm run test
+
+# Run tests in watch mode
+pnpm run test:watch
+
+# Run tests with coverage
+pnpm run test:cov
+
+# Run e2e tests
+pnpm run test:e2e
+```
+
+## Code Quality
+
+```bash
+# Lint code
+pnpm run lint
+
+# Format code
+pnpm run format
+```
+
+## Project Structure
+
+```
+src/
+├── auth/                 # Authentication module
+│   ├── auth.controller.ts
+│   ├── auth.service.ts
+│   ├── auth.module.ts
+│   ├── jwt.strategy.ts
+│   ├── guards/          # JWT and role guards
+│   ├── decorators/      # Role decorators
+│   └── dto/            # Data transfer objects
+├── users/               # Users module
+│   ├── users.controller.ts
+│   ├── users.service.ts
+│   ├── users.module.ts
+│   ├── schemas/         # MongoDB schemas
+│   └── dto/            # Data transfer objects
+├── applications/        # Applications module
+│   ├── applications.controller.ts
+│   ├── applications.service.ts
+│   ├── applications.module.ts
+│   ├── schemas/         # MongoDB schemas
+│   └── dto/            # Data transfer objects
+├── app.controller.ts    # Main app controller
+├── app.service.ts       # Main app service
+├── app.module.ts        # Root module
+└── main.ts             # Application entry point
+```
+
+## Database Schema
+
+### Users Collection
+
+- `email` (string, unique)
+- `password` (string, hashed)
+- `role` (string: 'user' | 'admin')
+- `createdAt` (Date)
+- `updatedAt` (Date)
+
+### Applications Collection
+
+- `userId` (ObjectId, ref: User)
+- `firstName` (string)
+- `lastName` (string)
+- `passportNumber` (string)
+- `nationality` (string)
+- `visaType` (string)
+- `purposeOfVisit` (string)
+- `intendedArrivalDate` (Date)
+- `intendedDepartureDate` (Date)
+- `status` (string: 'pending' | 'approved' | 'rejected')
+- `adminNotes` (string, optional)
+- `createdAt` (Date)
+- `updatedAt` (Date)
+
+## Troubleshooting
+
+### Common Issues
+
+1. **MongoDB Connection Error**
+   - Ensure MongoDB is running locally or your Atlas connection string is correct
+   - Check if the database name in the connection string exists
+
+2. **JWT Secret Missing**
+   - Make sure `JWT_SECRET` is set in your `.env` file
+   - Generate a strong secret key
+
+3. **Port Already in Use**
+   - Change the `PORT` in your `.env` file
+   - Or kill the process using the current port
+
+4. **Dependencies Issues**
+   - Delete `node_modules` and `pnpm-lock.yaml`
+   - Run `pnpm install` again
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Run linting and tests
+6. Submit a pull request
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+This project is licensed under the UNLICENSED license.
